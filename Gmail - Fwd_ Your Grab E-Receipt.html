@@ -49,6 +49,44 @@
             left: -7px;
             position: relative;
         }
+
+        .data-input {    
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            padding: 16px;
+            box-shadow: 0 3px 9px 0 rgba(0,0,0,.3);
+            background: hsl(122, 39%, 52%);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .form-group label {
+            color: #fff;
+            min-width: 70px;
+            flex: 3;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group input, .form-group textarea {
+            flex: 7;
+            border: none;
+            padding: 4px;
+        }
+
+        .form-group + .form-group {
+            margin-top: 1em;
+        }
+
+        @media print {
+            .data-input {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -59,7 +97,7 @@
         </div>
         <div class="form-group">
             <label for="Driver">Driver</label>
-            <input type="text" name="Driver" data-bind="value: driver, valueUpdate: 'keyup'" placeholder="Nguyễn Văn Toàn">
+            <input type="text" name="Driver" data-bind="value: driver, valueUpdate: 'keyup'">
         </div>
         <div class="form-group">
             <label for="Code">Code</label>
@@ -67,15 +105,23 @@
         </div>
         <div class="form-group">
             <label for="Pickup">Pickup</label>
-            <input type="text" name="Pickup" data-bind="value: pickup, valueUpdate: 'keyup'">
+            <!-- <input type="text" name="Pickup" data-bind="value: pickup, valueUpdate: 'keyup'"> -->
+            <textarea name="Pickup" data-bind="value: pickup, valueUpdate: 'keyup'" rows="3"></textarea>
         </div>
         <div class="form-group">
             <label for="Destination">Destination</label>
-            <input type="text" name="Destination" data-bind="value: destination, valueUpdate: 'keyup'">
+            <!-- <input type="text" name="Destination" data-bind="value: destination, valueUpdate: 'keyup'"> -->
+            <textarea name="Destination" data-bind="value: destination, valueUpdate: 'keyup'" rows="3"></textarea>
         </div>
         <div class="form-group">
-            <label for="DateTime">Date Time</label>
-            <input type="text" name="DateTime" data-bind="value: datetime, valueUpdate: 'keyup'" placeholder="08 Nov 18 15:03 +0700">
+            <label for="Date">Date</label>
+            <!-- 08 Nov 18 15:03 +0700 -->
+            <input type="text" name="Date" data-bind="value: date, valueUpdate: 'keyup'" placeholder="DD/MM/YYYY">
+        </div>
+        <div class="form-group">
+            <label for="Time">Time</label>
+            <!-- 08 Nov 18 15:03 +0700 -->
+            <input type="text" name="Time" data-bind="value: time, valueUpdate: 'keyup'" placeholder="hh:mm">
         </div>
     </div>
     <div class="bodycontainer">
@@ -141,7 +187,7 @@
                                                                                                                                         </td>
                                                                                                                                         <td style="font-size:12px;line-height:21px;font-weight:bold" align="left" valign="top" width="56%">
                                                                                                                                             Ngày &nbsp;&nbsp;|&nbsp; Giờ<br>
-                                                                                                                                            <span style="font-size:18px;font-weight:bold;color:rgb(0,175,65)" data-bind="text: datetime"></span>
+                                                                                                                                            <span style="font-size:18px;font-weight:bold;color:rgb(0,175,65)" data-bind="text: dateFormatted"></span>
                                                                                                                                         </td>
                                                                                                                                     </tr>
                                                                                                                                 </tbody>
@@ -646,6 +692,7 @@
     // <![CDATA[
         // document.body.onload = function () { document.body.offsetHeight; window.print() };
 // ]]></script>
+    <script src="./moment.min.js"></script>
     <script src="./knockout-3.4.2.js"></script>
     <script src="./app.js"></script>
 </body>
